@@ -1,16 +1,37 @@
-# React + Vite
+# Contactly
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+React 18 + Vite contact list frontend for the Flask contacts API.
 
-Currently, two official plugins are available:
+## Create a fresh React project
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```powershell
+npm create vite@latest contacts-frontend -- --template react
+cd contacts-frontend
+npm install
+npm install react@18 react-dom@18
+```
 
-## React Compiler
+Replace the generated `src` files with this project's `src` files, then add `.env.example`.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Run locally
 
-## Expanding the Oxlint configuration
+From the repository root:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+```powershell
+cd frontend
+npm install
+Copy-Item .env.example .env
+npm run dev
+```
+
+Set `VITE_API_URL` in `.env` to the Flask API's base URL. Restart Vite after changing it.
+
+## Build
+
+```powershell
+npm run build
+```
+
+## Deploy to Vercel
+
+Import the repository into Vercel and set **Root Directory** to `frontend`. Vercel detects Vite automatically. Add `VITE_API_URL` under **Project Settings → Environment Variables** for the production API, then redeploy.
