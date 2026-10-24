@@ -77,17 +77,18 @@ function App() {
   async function saveContact(values) {
     setSaving(true)
     setFormError('')
+    const isEditing = Boolean(form?.id)
     try {
-      const contact = form
+      const contact = isEditing
         ? await updateContact(form.id, values)
         : await createContact(values)
       setContacts((current) =>
-        form
+        isEditing
           ? current.map((item) => (item.id === contact.id ? contact : item))
           : [...current, contact],
       )
       setForm(null)
-      showToast(form ? 'Contact updated.' : 'Contact added.')
+      showToast(isEditing ? 'Contact updated.' : 'Contact added.')
     } catch (error) {
       setFormError(error.message)
     } finally {
